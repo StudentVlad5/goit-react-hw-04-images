@@ -48,7 +48,7 @@ useEffect(()=>{
 ,[imgSearchName, itemForFetch, nameForSearch])
  
 useEffect(()=>{
-    if(nameForSearch === imgSearchName){
+    if(nameForSearch === imgSearchName && imageCount>1){
         setStatusMore('pendingMore');
         async function fetchPendingMore () {
             setScroll(false);
