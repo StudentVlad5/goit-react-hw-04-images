@@ -27,7 +27,7 @@ useEffect(()=>{
     fetchImgSearchName();
     }
 ,[imgSearchName])
-
+ 
 useEffect(()=>{
     if(imageCount>1){
         setStatusMore('pendingMore');
