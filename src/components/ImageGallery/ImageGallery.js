@@ -69,7 +69,7 @@ useEffect(()=>{
         fetchPendingMore();
     }
 }
-    ,[imageCount, itemForFetch])
+    ,[imageCount, imgSearchName, itemForFetch, nameForSearch])
 
 useEffect(()=>{
     window.scrollBy({
