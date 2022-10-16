@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/goit-react-hw-04-images/static/css/main.90c2b995.css",
-    "main.js": "/goit-react-hw-04-images/static/js/main.c314c336.js",
+    "main.js": "/goit-react-hw-04-images/static/js/main.b942963b.js",
     "static/media/labrador_foto.jpg": "/goit-react-hw-04-images/static/media/labrador_foto.d3e98c283c2a6affdf9a.jpg",
     "index.html": "/goit-react-hw-04-images/index.html",
     "main.90c2b995.css.map": "/goit-react-hw-04-images/static/css/main.90c2b995.css.map",
-    "main.c314c336.js.map": "/goit-react-hw-04-images/static/js/main.c314c336.js.map"
+    "main.b942963b.js.map": "/goit-react-hw-04-images/static/js/main.b942963b.js.map"
   },
   "entrypoints": [
     "static/css/main.90c2b995.css",
-    "static/js/main.c314c336.js"
+    "static/js/main.b942963b.js"
   ]
 }
