@@ -36,6 +36,14 @@ useEffect(()=>{
 }
     ,[imageCount])
 
+useEffect(()=>{
+    window.scrollBy({
+        top: window.innerHeight,
+        left: 0,
+        behavior: 'smooth'
+    })
+    },[scroll])
+
 async function fetchImgSearchName () {
     await fetch(itemForFetch)
     .then(res=>{if(res.ok) {return res.json()} 
@@ -52,6 +60,7 @@ async function fetchImgSearchName () {
 }
 
 async function fetchPendingMore () {
+    setScroll(false);
     await fetch(itemForFetch)
     .then(res=>{if(res.ok){return res.json()}
     return Promise.reject(new Error(`Can't find anything with {imgSearchName}`))})
@@ -66,15 +75,6 @@ async function fetchPendingMore () {
         setStatus('reject')
     })
 }
-
-if (scroll){windowScroll()}
-
-function windowScroll () {
-    window.scrollBy({
-        top: window.innerHeight,
-        left: 0,
-        behavior: 'smooth'
-      })}
 
 function handleImageCount () {  
     setImageCount(imageCount=> imageCount+1);
