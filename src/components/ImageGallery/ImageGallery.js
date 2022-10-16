@@ -18,23 +18,58 @@ const [statusMore, setStatusMore] = useState('idle');
 const [visibility, setVisibility] = useState(false);
 const [scroll, setScroll] = useState(false);
 const [largeImage, setLargeImage] = useState('');
-const [addLsnEsc, setAddLsnEsc] = useState('')
+const [addLsnEsc, setAddLsnEsc] = useState('');
+const [nameForSearch, setNameForSearch] = useState('')
 
 let itemForFetch = `https://pixabay.com/api/?q=${imgSearchName}&page=${imageCount}&key=29531534-c6f4c4079f81828b6fd250707&image_type=photo&orientation=horizontal&per_page=12`
 
 useEffect(()=>{
+    if(nameForSearch !== imgSearchName){
+    setImageCount(1);
     setStatus('pending');
-    fetchImgSearchName();
+    async function fetchImgSearchName () {
+        await fetch(itemForFetch)
+        .then(res=>{if(res.ok) {return res.json()} 
+        return Promise.reject(new Error(`Can't find anything with {imgSearchName}`))})
+        .then(img => {
+            setImages(img.hits);
+            setStatus('resolved');
+            setTotalImg(img.total);
+            setNameForSearch(imgSearchName);
+            setLargeImage('');
+        })
+        .catch(error=>{
+            setError(error);
+            setStatus('reject')
+        })
     }
-,[imgSearchName])
+    fetchImgSearchName()    
+}}
+,[imgSearchName, itemForFetch, nameForSearch])
  
 useEffect(()=>{
-    if(imageCount>1){
+    if(nameForSearch === imgSearchName){
         setStatusMore('pendingMore');
+        async function fetchPendingMore () {
+            setScroll(false);
+            await fetch(itemForFetch)
+            .then(res=>{if(res.ok){return res.json()}
+            return Promise.reject(new Error(`Can't find anything with {imgSearchName}`))})
+            .then(img => {
+                setImages((images) => images.concat(img.hits));
+                setStatus('resolved');
+                setStatusMore('idle');
+                setScroll(true);
+            })
+            .catch(error=>{
+                setError(error);
+                setStatus('reject')
+            })
+        }
         fetchPendingMore();
     }
 }
-    ,[imageCount])
+    ,[imageCount, itemForFetch])
 
 useEffect(()=>{
     window.scrollBy({
@@ -43,38 +78,6 @@ useEffect(()=>{
         behavior: 'smooth'
     })
     },[scroll])
-
-async function fetchImgSearchName () {
-    await fetch(itemForFetch)
-    .then(res=>{if(res.ok) {return res.json()} 
-    return Promise.reject(new Error(`Can't find anything with {imgSearchName}`))})
-    .then(img => {
-        setImages(img.hits);
-        setStatus('resolved');
-        setTotalImg(img.total);
-        setLargeImage('')})
-    .catch(error=>{
-        setError(error);
-        setStatus('reject')
-    })
-}
-
-async function fetchPendingMore () {
-    setScroll(false);
-    await fetch(itemForFetch)
-    .then(res=>{if(res.ok){return res.json()}
-    return Promise.reject(new Error(`Can't find anything with {imgSearchName}`))})
-    .then(img => {
-        setImages((images) => images.concat(img.hits));
-        setStatus('resolved');
-        setStatusMore('idle');
-        setScroll(true);
-    })
-    .catch(error=>{
-        setError(error);
-        setStatus('reject')
-    })
-}
 
 function handleImageCount () {  
     setImageCount(imageCount=> imageCount+1);
