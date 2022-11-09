@@ -87,7 +87,7 @@ function handleImageCount () {
 function startModalWindow (e) {
 setAddLsnEsc(document.addEventListener('keydown', handleKeyDown));
 setVisibility(true);
-setLargeImage(e.target);
+setLargeImage(e.target.dataset['source']);
 setScroll(false)
 }
 

@@ -1,4 +1,5 @@
 import { ImBinoculars } from "react-icons/im";
+import PropTypes from 'prop-types';
 
 const Loader = ({handleimageCount}) => {
 return(
@@ -11,3 +12,7 @@ return(
     )}
 
 export default Loader
+
+Loader.propTypes = {
+    handleimageCount : PropTypes.func
+  }

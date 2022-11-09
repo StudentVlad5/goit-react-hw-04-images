@@ -192,7 +192,6 @@ h1 {
   min-width: calc(100vw - 248px);
   min-height: calc(100vh - 248px);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
 }
 .button {
   position: absolute;

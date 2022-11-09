@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ErrorImg from './labrador_foto.jpg'
 
 const ImageGalleryError = ({message}) =>
@@ -8,3 +9,6 @@ const ImageGalleryError = ({message}) =>
 
 export default ImageGalleryError
 
+ImageGalleryError.propTypes = {
+    message : PropTypes.string
+}

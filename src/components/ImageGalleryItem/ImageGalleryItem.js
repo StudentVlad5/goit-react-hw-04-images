@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const  ImageGalleryItem = ({liItem, startModalWindow}) => {
 
 let step1 = [Object.values({liItem})[0]][0];
@@ -9,5 +10,10 @@ if(step1.length > 0){
   return liElems
 }
 }
-
 export default ImageGalleryItem
+
+
+ImageGalleryItem.propTypes = {
+  liItem : PropTypes.array,
+  startModalWindow: PropTypes.func
+}
